@@ -41,14 +41,9 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(50) NOT NULL
 );
 
--- Вставка пользователя test1 (если ещё нет)
-INSERT INTO users (password, username, role)
-VALUES ('$2a$10$/jMHh0q9QZ/4J7e4LJmVK.uX6DLHOZqY7Vp8bJ2nivfkWN4Tp7dsq', 'test1', 'ROLE_USER')
-    ON CONFLICT (username) DO NOTHING;
-
 -- Убедимся, что есть пользователь с id = 24
 INSERT INTO users (id, password, username, role)
-VALUES (24, 'stub-password', 'user24', 'ROLE_USER')
+VALUES (1, '$2a$10$/jMHh0q9QZ/4J7e4LJmVK.uX6DLHOZqY7Vp8bJ2nivfkWN4Tp7dsq', 'Vadim', 'ROLE_USER')
     ON CONFLICT (id) DO NOTHING;
 
 -- Таблица user_setting_value
@@ -62,11 +57,11 @@ CREATE TABLE IF NOT EXISTS user_setting_value (
 -- Вставка настроек для пользователя 24, который может менять значения
 INSERT INTO user_setting_value (user_id, setting_id, value)
 SELECT
-    24,
+    1,
     s.id,
     s.default_value
 FROM setting s
 WHERE NOT EXISTS (
     SELECT 1 FROM user_setting_value usv
-    WHERE usv.user_id = 24 AND usv.setting_id = s.id
+    WHERE usv.user_id = 1 AND usv.setting_id = s.id
 );
