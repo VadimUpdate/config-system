@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(50) NOT NULL
 );
 
--- Убедимся, что есть пользователь с id = 24
+-- Убедимся, что есть пользователь с id = 1
 INSERT INTO users (id, password, username, role)
-VALUES (1, '$2a$10$/jMHh0q9QZ/4J7e4LJmVK.uX6DLHOZqY7Vp8bJ2nivfkWN4Tp7dsq', 'Vadim', 'ROLE_USER')
+VALUES (1, '$2a$10$/jMHh0q9QZ/4J7e4LJmVK.uX6DLHOZqY7Vp8bJ2nivfkWN4Tp7dsq', 'admin', 'ROLE_USER')
     ON CONFLICT (id) DO NOTHING;
 
 -- Таблица user_setting_value
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS user_setting_value (
     value VARCHAR(255) NOT NULL
 );
 
--- Вставка настроек для пользователя 24, который может менять значения
+-- Вставка настроек для пользователя 1, который может менять значения
 INSERT INTO user_setting_value (user_id, setting_id, value)
 SELECT
     1,

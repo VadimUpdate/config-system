@@ -15,6 +15,35 @@ services:
     networks:
       - backend
 
+  config-server:
+    build:
+      context: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/study
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 9567632a
+    networks:
+      - backend
+
+  config-client:
+    build:
+      context: ./config-client
+    container_name: config-client
+    ports:
+      - "8081:8081"   # вот тут проброс порта сервера config-client
+    depends_on:
+      - config-server
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+    networks:
+      - backend
+
+
   admin-backend:
     build:
       context: ./admin-console
@@ -23,6 +52,10 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/study
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 9567632a
     networks:
       - backend
 
@@ -38,19 +71,8 @@ services:
     networks:
       - backend
 
-  config-server:
-    build:
-      context: ./config-server
-    container_name: config-server
-    ports:
-      - "8888:8888"
-    depends_on:
-      - postgres
-    networks:
-      - backend
-
 volumes:
   postgres_data:
 
 networks:
-  backend:
+  backend: {}
