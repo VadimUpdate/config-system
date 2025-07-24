@@ -43,7 +43,7 @@ docker-compose up --build
 
 Frontend доступен по адресу http://localhost:3000
 
-Backend доступен по адресу http://localhost:9090
+Backend доступен по адресу http://localhost:8080
 
 Config Server работает внутри контейнера и взаимодействует с другими сервисами через сети Docker.
 
