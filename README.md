@@ -26,17 +26,13 @@ Node.js 16+ для фронтенда
 
 Клонируй репозиторий с сабмодулями:
 
-bash
-Копировать
-Редактировать
 git clone --recursive https://github.com/VadimUpdate/config-system
 cd config-system
+
 Собери контейнеры с помощью Docker Compose:
 
-bash
-Копировать
-Редактировать
 docker-compose up --build
+
 Приложение будет доступно по:
 
 Frontend: http://localhost:3000
@@ -44,25 +40,21 @@ Frontend: http://localhost:3000
 Backend: http://localhost:8080
 
 Запуск
+
 Для сборки всех сервисов (фронтенд, бэкенд, база данных) используйте:
 
-bash
-Копировать
-Редактировать
 docker-compose build
+
 Для запуска всех сервисов:
 
-bash
-Копировать
-Редактировать
 docker-compose up
+
 Для остановки всех сервисов:
 
-bash
-Копировать
-Редактировать
 docker-compose down
+
 Доступ
+
 Для тестирования существует пользователь с правами администратора:
 
 Логин: admin
