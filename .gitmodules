@@ -1,2 +1,11 @@
 [submodule "admin-console"]
-	url = https://github.com/VadimUpdate/admin-console.git
+    path = admin-console
+    url = https://github.com/VadimUpdate/admin-console.git
+
+[submodule "config-client"]
+    path = config-client
+    url = https://github.com/VadimUpdate/config-client.git
+
+[submodule "config-server"]
+    path = config-server
+    url = https://github.com/VadimUpdate/config-server.git
