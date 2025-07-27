@@ -5,5 +5,12 @@
     <mapping directory="$PROJECT_DIR$/admin-console" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/config-client" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/config-server" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/demoh/config-system" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/demoh/config-system/admin-console" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/demoh/config-system/config-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/demoh/config-system/config-server" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fsdfsdaf/config-system" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fsdfsdaf/config-system/config-client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fsdfsdaf/config-system/config-server" vcs="Git" />
   </component>
 </project>
