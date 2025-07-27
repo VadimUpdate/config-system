@@ -9,6 +9,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Admin-console" options="-parameters" />
+      <module name="Admin-console.main" options="-parameters" />
+      <module name="Admin-console.test" options="-parameters" />
       <module name="ProjectStudy" options="-parameters" />
       <module name="ProjectStudy.main" options="-parameters" />
       <module name="ProjectStudy.test" options="-parameters" />

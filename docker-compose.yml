@@ -10,31 +10,9 @@ services:
       POSTGRES_PASSWORD: 9567632a
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - "5433:5432"
-    networks:
-      - backend
-
-  admin-backend:
-    build:
-      context: ./admin-console
-    container_name: admin-backend
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres
-    networks:
-      - backend
-
-  admin-frontend:
-    build:
-      context: ./admin-console/frontend
-      dockerfile: Dockerfile
-    container_name: admin-frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - admin-backend
     networks:
       - backend
 
@@ -49,8 +27,52 @@ services:
     networks:
       - backend
 
+  config-client:
+    build:
+      context: ./config-client
+    container_name: config-client
+    ports:
+      - "8081:8081"
+    depends_on:
+      - config-server
+    networks:
+      - backend
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      # Можно передавать параметры сюда, но если всё в config-server — не обязательно
+
+  admin-backend:
+    build:
+      context: ./admin-console
+    container_name: admin-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - config-server
+    networks:
+      - backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/study
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 9567632a
+      SPRING_PROFILES_ACTIVE: docker
+
+  admin-frontend:
+    build:
+      context: ./admin-console/frontend
+      dockerfile: Dockerfile
+    container_name: admin-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - admin-backend
+    networks:
+      - backend
+
 volumes:
   postgres_data:
 
 networks:
   backend:
+    driver: bridge
